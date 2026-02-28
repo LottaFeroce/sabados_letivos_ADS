@@ -3,9 +3,10 @@ background-repeat: repeat;
 background-size: 100%;}
 
 nav{padding: 0;
+display: flex;
 margin: 0;
-align-self: start;
-width: 500px;
+align-self: center;
+justify-content: space-between;
 height: auto;}
 
 form{align-items: center;
