@@ -2,6 +2,12 @@ body{background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2w
 background-repeat: repeat;
 background-size: 100%;}
 
+nav{padding: 0;
+margin: 0;
+align-self: start;
+width: 500px;
+height: auto;}
+
 form{align-items: center;
 width: 100vw;}
 
