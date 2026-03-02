@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital São Julião</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+        <aside class="sidebar">
+
+        <div class="sidebar-top">
+            <div class="logo-circle">
+                <span>➕</span>
+            </div>
+            <h1>HOSPITAL<br>SÃO JULIÃO</h1>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html" class="menu-item active">💻 <span>Visão Geral</span></a></li>
+                <li><a href="#" class="menu-item">😷 <span>Pacientes</span></a></li>
+                <li><a href="#" class="menu-item">🏥 <span>Cadastro/Pavilhão</span></a></li>
+                <li><a href="#" class="menu-item">📊 <span>Relatórios</span></a></li>
+                <li><a href="#" class="menu-item">🚑 <span>Transporte</span></a></li>
+                <li><a href="#" class="menu-item">🧹 <span>Limpeza</span></a></li>
+                <li><a href="#" class="menu-item">👩‍⚕️ <span>Usuários</span></a></li>
+                <li><a href="#" class="menu-item">🔬 <span>Leitos</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="logout-btn">🚪 <span>Sair</span></button>
+        </div>
+
+    </aside>
+
+    
+    <main class="main-content">
+
+        
+        <header class="header">
+            <div class="header-left">
+                <span>📝</span>
+                <h2>Visão Geral</h2>
+            </div>
+
+            <div class="header-right">
+                <button class="notification-btn">
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="user-avatar">
+                    👤
+                </div>
+            </div>
+        </header>
+
+        
+        <section class="dashboard">
+
+            
+            <div class="cards">
+
+                <div class="card">
+                    <div>
+                        <p>Leitos Disponíveis</p>
+                        <h3>12 Leitos</h3>
+                    </div>
+                    <div class="card-icon available">🔬</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Leitos para Limpeza</p>
+                        <h3>03 Leitos</h3>
+                    </div>
+                    <div class="card-icon cleaning">🧹</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Leitos Ocupados</p>
+                        <h3>15 Leitos</h3>
+                    </div>
+                    <div class="card-icon occupied">🚫</div>
+                </div>
+
+            </div>
+
+            
+            <div class="map-section">
+
+                <div class="map-header">
+                    <h2>Mapa do Hospital</h2>
+
+                    <div class="map-actions">
+                        <button>➕</button>
+                        <button>➖</button>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <img src="https://www.edrawsoft.com/template/hospital-floor-plan.png" 
+                        alt="Mapa Hospital" 
+                        style="width:100%; opacity:0.15;">
+                    <div class="map-placeholder">
+                        Mapa do Hospital
+                    </div>
+
+                    
+                    <div class="map-tag north-wing">
+                        🏦 <span>Ala Norte</span>
+                    </div>
+
+                    <div class="map-tag emergency">
+                        🏣 <span>Pronto Socorro</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
