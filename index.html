@@ -20,8 +20,10 @@
 
         <nav class="menu">
             <ul>
-                <li><a href="index.html" class="menu-item active">💻 <span>Visão Geral</span></a></li>
-                <li><a href="#" class="menu-item">😷 <span>Pacientes</span></a></li>
+                <!-- adicionado id e onclick -->
+                <li><a href="#" id="nav-visao" class="menu-item active" onclick="goTo('visao')">💻 <span>Visão Geral</span></a></li>
+                <!-- adicionado id e onclick -->
+                <li><a href="#" id="nav-pacientes" class="menu-item" onclick="goTo('lista')">😷 <span>Pacientes</span></a></li>
                 <li><a href="#" class="menu-item">🏥 <span>Cadastro/Pavilhão</span></a></li>
                 <li><a href="#" class="menu-item">📊 <span>Relatórios</span></a></li>
                 <li><a href="#" class="menu-item">🚑 <span>Transporte</span></a></li>
@@ -43,8 +45,9 @@
         
         <header class="header">
             <div class="header-left">
-                <span>📝</span>
-                <h2>Visão Geral</h2>
+                <!-- adicionados ids para atualização dinâmica -->
+                <span id="header-icon">📝</span>
+                <h2 id="header-title">Visão Geral</h2>
             </div>
 
             <div class="header-right">
@@ -62,70 +65,410 @@
         
         <section class="dashboard">
 
-            
-            <div class="cards">
+            <!-- ═══ ADIÇÃO: conteúdo original envolto em screen ═══ -->
+            <div class="screen active" id="screen-visao">
 
-                <div class="card">
-                    <div>
-                        <p>Leitos Disponíveis</p>
-                        <h3>12 Leitos</h3>
+                <div class="cards">
+
+                    <div class="card">
+                        <div>
+                            <p>Leitos Disponíveis</p>
+                            <h3>12 Leitos</h3>
+                        </div>
+                        <div class="card-icon disponivel">🔬</div>
                     </div>
-                    <div class="card-icon disponivel">🔬</div>
+
+                    <div class="card">
+                        <div>
+                            <p>Leitos para Limpeza</p>
+                            <h3>03 Leitos</h3>
+                        </div>
+                        <div class="card-icon limpando">🧹</div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <p>Leitos Ocupados</p>
+                            <h3>15 Leitos</h3>
+                        </div>
+                        <div class="card-icon ocupado">🚫</div>
+                    </div>
+
                 </div>
 
-                <div class="card">
-                    <div>
-                        <p>Leitos para Limpeza</p>
-                        <h3>03 Leitos</h3>
-                    </div>
-                    <div class="card-icon limpando">🧹</div>
-                </div>
+                
+                <div class="area_mapa">
 
-                <div class="card">
-                    <div>
-                        <p>Leitos Ocupados</p>
-                        <h3>15 Leitos</h3>
+                    <div class="header_mapa">
+                        <h2>Mapa do Hospital</h2>
+
+                        <div class="mapa_btns">
+                            <button>➕</button>
+                            <button>➖</button>
+                        </div>
                     </div>
-                    <div class="card-icon ocupado">🚫</div>
+
+                    <div class="container_mapa">
+                        <img src="https://www.edrawsoft.com/template/hospital-floor-plan.png" 
+                            alt="Mapa Hospital" 
+                            style="width:100%; opacity:0.15;">
+                        <div class="mapa_placeholder">
+                            Mapa do Hospital
+                        </div>
+
+                        
+                        <div class="mapa_tag ala_norte">
+                            🏦 <span>Ala Norte</span>
+                        </div>
+
+                        <div class="mapa_tag emergencia">
+                            🏣 <span>Pronto Socorro</span>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
+            <!-- ═══ FIM screen-visao ═══ -->
 
-            
-            <div class="area_mapa">
+            <!-- ═══ ADIÇÃO: telas de pacientes ═══ -->
 
-                <div class="header_mapa">
-                    <h2>Mapa do Hospital</h2>
-
-                    <div class="mapa_btns">
-                        <button>➕</button>
-                        <button>➖</button>
+            <div class="screen" id="screen-lista">
+                <div class="pacientes-box">
+                    <div class="search-row">
+                        <div class="search-wrap">
+                            <span>🔍</span>
+                            <input type="text" placeholder="Digite um nome ou CPF..." id="search-input" oninput="filterTable()" />
+                        </div>
+                        <button class="btn-novo-paciente" onclick="goTo('cadastro')">➕ Novo Paciente</button>
                     </div>
+                    <table class="patient-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Setor</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
                 </div>
-
-                <div class="container_mapa">
-                    <img src="https://www.edrawsoft.com/template/hospital-floor-plan.png" 
-                        alt="Mapa Hospital" 
-                        style="width:100%; opacity:0.15;">
-                    <div class="mapa_placeholder">
-                        Mapa do Hospital
-                    </div>
-
-                    
-                    <div class="mapa_tag ala_norte">
-                        🏦 <span>Ala Norte</span>
-                    </div>
-
-                    <div class="mapa_tag emergencia">
-                        🏣 <span>Pronto Socorro</span>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="screen" id="screen-cadastro">
+                <div class="form-box">
+                    <button class="back-btn" onclick="goTo('lista')">← Voltar</button>
+                    <h1 class="form-title">Cadastro de paciente</h1>
+                    <p class="form-subtitle">Preencha as informações abaixo para cadastrar um paciente.</p>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Paciente</label>
+                            <input type="text" placeholder="Nome do paciente..." id="cad-nome" />
+                        </div>
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="text" placeholder="DD/MM/AAAA" id="cad-nasc" />
+                        </div>
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" placeholder="XXX.XXX.XXX-XX" id="cad-cpf" />
+                        </div>
+                    </div>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Responsável</label>
+                            <input type="text" placeholder="Nome do responsável..." id="cad-resp" />
+                        </div>
+                        <div class="form-group">
+                            <label>Alergia há algum medicamento?</label>
+                            <select id="cad-alergia">
+                                <option>Sim</option>
+                                <option>Não</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="text" placeholder="(xx)xxxxx-xxxx" id="cad-tel" />
+                        </div>
+                    </div>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Histórico de Doenças</label>
+                            <input type="text" placeholder="Tuberculose..." id="cad-hist" />
+                        </div>
+                        <div class="form-group">
+                            <label>Sexo</label>
+                            <select id="cad-sexo">
+                                <option>Masculino</option>
+                                <option>Feminino</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Setor</label>
+                            <select id="cad-setor">
+                                <option value="12">Setor 1</option>
+                                <option value="26">Setor 2</option>
+                                <option value="27">Setor 3</option>
+                                <option value="29">Setor 4</option>
+                                <option value="31">Setor 5</option>
+                                <option value="33">Setor 6</option>
+                                <option value="34">Setor 7</option>
+                                <option value="36">Setor 8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row cols-1">
+                        <div class="form-group">
+                            <label>Observação:</label>
+                            <textarea placeholder="Ex: Paciente entrando em cuidados paliativos, tomar medicamento XYZ ..."
+                                      id="cad-obs" maxlength="200" oninput="updateChar('cad-obs','cad-char')"></textarea>
+                            <span class="char-count"><span id="cad-char">0</span>/200</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-cancelar" onclick="goTo('lista')">Cancelar</button>
+                        <button class="btn-salvar" onclick="salvarPaciente()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen" id="screen-editar">
+                <div class="form-box">
+                    <button class="back-btn" onclick="goTo('lista')">← Voltar</button>
+                    <h1 class="form-title">Edição de paciente</h1>
+                    <p class="form-subtitle">Altere as informações abaixo para editar um paciente.</p>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Paciente</label>
+                            <input type="text" placeholder="Nome do paciente..." id="ed-nome" />
+                        </div>
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="text" placeholder="DD/MM/AAAA" id="ed-nasc" />
+                        </div>
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" placeholder="XXX.XXX.XXX-XX" id="ed-cpf" />
+                        </div>
+                    </div>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Responsável</label>
+                            <input type="text" placeholder="Nome do responsável..." id="ed-resp" />
+                        </div>
+                        <div class="form-group">
+                            <label>Alergia há algum medicamento?</label>
+                            <select id="ed-alergia">
+                                <option>Sim</option>
+                                <option>Não</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="text" placeholder="(xx)xxxxx-xxxx" id="ed-tel" />
+                        </div>
+                    </div>
+                    <div class="form-row cols-3">
+                        <div class="form-group">
+                            <label>Histórico de Doenças</label>
+                            <input type="text" placeholder="Tuberculose..." id="ed-hist" />
+                        </div>
+                        <div class="form-group">
+                            <label>Sexo</label>
+                            <select id="ed-sexo">
+                                <option>Masculino</option>
+                                <option>Feminino</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Setor</label>
+                            <select id="ed-setor">
+                                <option value="12">Setor 1</option>
+                                <option value="26">Setor 2</option>
+                                <option value="27">Setor 3</option>
+                                <option value="29">Setor 4</option>
+                                <option value="31">Setor 5</option>
+                                <option value="33">Setor 6</option>
+                                <option value="34">Setor 7</option>
+                                <option value="36">Setor 8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row cols-1">
+                        <div class="form-group">
+                            <label>Observação:</label>
+                            <textarea placeholder="Ex: Paciente entrando em cuidados paliativos, tomar medicamento XYZ ..."
+                                      id="ed-obs" maxlength="200" oninput="updateChar('ed-obs','ed-char')"></textarea>
+                            <span class="char-count"><span id="ed-char">0</span>/200</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-cancelar" onclick="goTo('lista')">Cancelar</button>
+                        <button class="btn-salvar" onclick="salvarEdicao()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- ═══ FIM telas de pacientes ═══ -->
 
         </section>
 
     </main>
+
+    <!-- ═══ ADIÇÃO: modal de exclusão ═══ -->
+    <div class="modal-overlay" id="modal-del">
+        <div class="modal-box">
+            <div class="modal-warn-icon">⚠️</div>
+            <h2 class="modal-title">Aviso</h2>
+            <p class="modal-desc">Deseja realmente excluir o paciente?</p>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" onclick="closeModal()">Cancelar</button>
+                <button class="btn-modal-confirm" onclick="confirmarExclusao()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ ADIÇÃO: container de toasts ═══ -->
+    <div id="toast-container"></div>
+
+    <!-- ═══ ADIÇÃO: script de pacientes ═══ -->
+    <script>
+        let patients = [
+            { id:1, nome:'Ana Lima',      cpf:'123.456.789-00', setor:34, tel:'6799555-0000' },
+            { id:2, nome:'Bruno Matos',   cpf:'123.456.789-00', setor:26, tel:'6799555-0000' },
+            { id:3, nome:'Carla Nunes',   cpf:'123.456.789-00', setor:31, tel:'6799555-0000' },
+            { id:4, nome:'Diego Ramos',   cpf:'123.456.789-00', setor:12, tel:'6799555-0000' },
+            { id:5, nome:'Elaine Torres', cpf:'123.456.789-00', setor:33, tel:'6799555-0000' },
+            { id:6, nome:'Fábio Araújo',  cpf:'123.456.789-00', setor:36, tel:'6799555-0000' },
+            { id:7, nome:'Gabi Ferreira', cpf:'123.456.789-00', setor:27, tel:'6799555-0000' },
+            { id:8, nome:'Hugo Santos',   cpf:'123.456.789-00', setor:29, tel:'6799555-0000' },
+        ];
+        let nextId = 9, deleteTarget = null, editTarget = null;
+
+        const headerConfig = {
+            visao:    { icon: '📝', title: 'Visão Geral' },
+            lista:    { icon: '😷', title: 'Pacientes' },
+            cadastro: { icon: '😷', title: 'Pacientes  >  Cadastrar paciente' },
+            editar:   { icon: '😷', title: 'Pacientes  >  Editar paciente' },
+        };
+
+        function goTo(screen) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + screen).classList.add('active');
+
+            const cfg = headerConfig[screen];
+            document.getElementById('header-icon').textContent  = cfg.icon;
+            document.getElementById('header-title').textContent = cfg.title;
+
+            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+            const navMap = { visao: 'nav-visao', lista: 'nav-pacientes', cadastro: 'nav-pacientes', editar: 'nav-pacientes' };
+            document.getElementById(navMap[screen])?.classList.add('active');
+
+            if (screen === 'lista') renderTable();
+        }
+
+        function renderTable(list) {
+            if (!list) list = patients;
+            document.getElementById('table-body').innerHTML = list.map(p => `
+                <tr>
+                    <td>${p.nome}</td>
+                    <td>${p.cpf}</td>
+                    <td>${p.setor}</td>
+                    <td>${p.tel}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="openEdit(${p.id})">✏️</button>
+                            <button class="action-btn" onclick="openDelete(${p.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>`).join('');
+        }
+
+        function filterTable() {
+            const q = document.getElementById('search-input').value.toLowerCase();
+            renderTable(patients.filter(p => p.nome.toLowerCase().includes(q) || p.cpf.includes(q)));
+        }
+
+        function salvarPaciente() {
+            const nome = document.getElementById('cad-nome').value.trim();
+            if (!nome) { showToast('ℹ️  Preencha o nome do paciente.', 'info'); return; }
+            patients.push({
+                id: nextId++, nome,
+                cpf:   document.getElementById('cad-cpf').value.trim()  || '123.456.789-00',
+                tel:   document.getElementById('cad-tel').value.trim()  || '6799555-0000',
+                setor: parseInt(document.getElementById('cad-setor').value)
+            });
+            ['cad-nome','cad-cpf','cad-tel','cad-resp','cad-hist','cad-obs','cad-nasc']
+                .forEach(id => document.getElementById(id).value = '');
+            document.getElementById('cad-char').textContent = '0';
+            goTo('lista');
+            showToast('✅  Sucesso: Operação realizada com sucesso.', 'success');
+        }
+
+        function openEdit(id) {
+            const p = patients.find(x => x.id === id);
+            editTarget = id;
+            document.getElementById('ed-nome').value = p.nome;
+            document.getElementById('ed-cpf').value  = p.cpf;
+            document.getElementById('ed-tel').value  = p.tel;
+            goTo('editar');
+        }
+
+        function salvarEdicao() {
+            const nome = document.getElementById('ed-nome').value.trim();
+            if (!nome) { showToast('ℹ️  Preencha o nome do paciente.', 'info'); return; }
+            const p = patients.find(x => x.id === editTarget);
+            if (p) {
+                p.nome  = nome;
+                p.cpf   = document.getElementById('ed-cpf').value.trim()  || p.cpf;
+                p.tel   = document.getElementById('ed-tel').value.trim()  || p.tel;
+                p.setor = parseInt(document.getElementById('ed-setor').value) || p.setor;
+            }
+            goTo('lista');
+            showToast('ℹ️  Sucesso: Edição realizada com sucesso.', 'info');
+        }
+
+        function openDelete(id) {
+            deleteTarget = id;
+            document.getElementById('modal-del').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-del').classList.remove('open');
+            deleteTarget = null;
+        }
+
+        function confirmarExclusao() {
+            patients = patients.filter(p => p.id !== deleteTarget);
+            closeModal();
+            renderTable();
+        }
+
+        document.getElementById('modal-del').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        function showToast(msg, type = 'success') {
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.innerHTML = `<span>${msg}</span><button class="toast-close" onclick="dismissToast(this.parentElement)">✕</button>`;
+            document.getElementById('toast-container').appendChild(el);
+            setTimeout(() => dismissToast(el), 4000);
+        }
+
+        function dismissToast(el) {
+            if (!el || el.classList.contains('leaving')) return;
+            el.classList.add('leaving');
+            setTimeout(() => el.remove(), 260);
+        }
+
+        function updateChar(taId, countId) {
+            document.getElementById(countId).textContent = document.getElementById(taId).value.length;
+        }
+    </script>
 
 </body>
 </html>
