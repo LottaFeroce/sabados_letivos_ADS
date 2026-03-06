@@ -20,9 +20,9 @@
 
         <nav class="menu">
             <ul>
-                <!-- adicionado id e onclick -->
+                
                 <li><a href="#" id="nav-visao" class="menu-item active" onclick="goTo('visao')">💻 <span>Visão Geral</span></a></li>
-                <!-- adicionado id e onclick -->
+               
                 <li><a href="#" id="nav-pacientes" class="menu-item" onclick="goTo('lista')">😷 <span>Pacientes</span></a></li>
                 <li><a href="#" class="menu-item">🏥 <span>Cadastro/Pavilhão</span></a></li>
                 <li><a href="#" class="menu-item">📊 <span>Relatórios</span></a></li>
@@ -45,7 +45,7 @@
         
         <header class="header">
             <div class="header-left">
-                <!-- adicionados ids para atualização dinâmica -->
+              
                 <span id="header-icon">📝</span>
                 <h2 id="header-title">Visão Geral</h2>
             </div>
@@ -65,7 +65,7 @@
         
         <section class="dashboard">
 
-            <!-- ═══ ADIÇÃO: conteúdo original envolto em screen ═══ -->
+           
             <div class="screen active" id="screen-visao">
 
                 <div class="cards">
@@ -129,9 +129,7 @@
                 </div>
 
             </div>
-            <!-- ═══ FIM screen-visao ═══ -->
-
-            <!-- ═══ ADIÇÃO: telas de pacientes ═══ -->
+            
 
             <div class="screen" id="screen-lista">
                 <div class="pacientes-box">
@@ -312,13 +310,13 @@
                     </div>
                 </div>
             </div>
-            <!-- ═══ FIM telas de pacientes ═══ -->
+           
 
         </section>
 
     </main>
 
-    <!-- ═══ ADIÇÃO: modal de exclusão ═══ -->
+   
     <div class="modal-overlay" id="modal-del">
         <div class="modal-box">
             <div class="modal-warn-icon">⚠️</div>
@@ -331,10 +329,10 @@
         </div>
     </div>
 
-    <!-- ═══ ADIÇÃO: container de toasts ═══ -->
+  
     <div id="toast-container"></div>
 
-    <!-- ═══ ADIÇÃO: script de pacientes ═══ -->
+    
     <script>
         let patients = [
             { id:1, nome:'Ana Lima',      cpf:'123.456.789-00', setor:34, tel:'6799555-0000' },
